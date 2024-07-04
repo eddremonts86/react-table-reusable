@@ -1,7 +1,7 @@
 import table from './Table'
 import TableHeaders from './TableHeaders'
-import TableHeaders from './TableContent'
-import TableHeaders from './TableHeaders'
+import TableContent from './TableContent'
+import TableFooter from './TableFooter'
 
 
-export {}
+export {TableFooter, TableHeaders, TableContent, table}
