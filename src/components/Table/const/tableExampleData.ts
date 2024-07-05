@@ -51,7 +51,7 @@ export const headers = [
         "id": "grid-actions",
         "sortable": false,
       "resizable": false
-        
+
     }
 ]
 export const data = [

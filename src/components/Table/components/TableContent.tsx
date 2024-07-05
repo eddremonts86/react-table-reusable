@@ -1,5 +1,6 @@
-import { flexRender, Table } from "@tanstack/react-table";
+import { Table } from "@tanstack/react-table";
 import TableLoading from "./TableLoading";
+import { getCellContent } from "../utils/table";
 interface TableContentProps {
   loading: boolean;
   table: Table<unknown>;
@@ -20,32 +21,26 @@ export default function TableContent({
           className={className}
         />
       ) : (
-        table.getRowModel().rows.map((row) => {
-          return (
-            <tr
-              key={`table_body_tr_${row.id}`}
-              className={className}
-            >
-              {row.getVisibleCells().map((cell) => {
-                const cellHtml = flexRender(
-                  cell.column.columnDef.cell,
-                  cell.getContext()
-                );
-                return (
-                  <td
-                    key={`table_body_td_${cell.id}`}
-                    className="py-4 border"
-                    style={{
-                      width: cell.column.getSize(),
-                    }}
-                  >
-                    {cellHtml}
-                  </td>
-                );
-              })}
-            </tr>
-          );
-        })
+        table.getRowModel().rows.map((row) => (
+          <tr
+            key={`table_body_tr_${row.id}`}
+            className={className}
+          >
+            {row.getVisibleCells().map((cell) => {
+              return (
+                <td
+                  key={`table_body_td_${cell.id}`}
+                  className="py-4 border"
+                  style={{
+                    width: cell.column.getSize(),
+                  }}
+                >
+                  {getCellContent(cell)}
+                </td>
+              );
+            })}
+          </tr>
+        ))
       )}
     </tbody>
   );

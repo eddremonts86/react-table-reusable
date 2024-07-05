@@ -28,6 +28,7 @@ export default function Table({
 
   const tableHeaders: HeaderGroup<unknown>[] = table.getHeaderGroups();
   const headersLength = tableHeaders[0].headers.length;
+
   return (
     <table className="w-full">
       <TableHeaders

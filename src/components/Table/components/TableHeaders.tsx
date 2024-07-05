@@ -1,4 +1,5 @@
-import { flexRender, type HeaderGroup } from "@tanstack/react-table";
+import type { HeaderGroup } from "@tanstack/react-table";
+import { getHeaderContent } from "../utils/table";
 interface TableHeadersProps {
   headers: HeaderGroup<unknown>[];
   className?: string;
@@ -15,18 +16,14 @@ export default function TableHeaders({
           className="border-gray-300"
         >
           {header.headers.map((subHeader) => {
-            const headerHtml = flexRender(
-              subHeader.column.columnDef.header,
-              subHeader.getContext()
-            );
             return (
               <th
                 className="py-6 border"
                 key={`header_th_${subHeader.id}`}
-                colSpan={subHeader.colSpan}
-                rowSpan={subHeader.colSpan || 1}
+                colSpan={subHeader.colSpan || 1}
+                rowSpan={subHeader.rowSpan || 1}
               >
-                {headerHtml}
+                {getHeaderContent(subHeader)}
               </th>
             );
           })}

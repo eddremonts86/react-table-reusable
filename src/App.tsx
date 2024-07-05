@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Table as TableContainer } from "./components/Table";
+import TableExample from "./components/Table/components/tableExample";
 import { tableExampleData } from "./components/Table/const/tableExampleData";
 export default function App() {
   const [loading, setLoading] = useState(false);
@@ -8,19 +9,20 @@ export default function App() {
     const timeout = () =>
       setTimeout(() => {
         setLoading(false);
-      }, 5000);
+      }, 1500);
     timeout();
 
     return () => clearTimeout(timeout());
   }, []);
 
   return (
-    <div className="flex items-center justify-center p-12">
+    <div className="flex flex-col items-center justify-center p-12">
       <TableContainer
         data={tableExampleData.data}
         headers={tableExampleData.headers}
         loading={loading}
       />
+      <TableExample />
     </div>
   );
 }
