@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Table as TableContainer } from "./components/Table";
-import TableExample from "./components/Table/components/tableExample";
+import { Table } from "./components/Table";
 import { tableExampleData } from "./components/Table/const/tableExampleData";
 export default function App() {
   const [loading, setLoading] = useState(false);
@@ -17,12 +16,12 @@ export default function App() {
 
   return (
     <div className="flex flex-col items-center justify-center p-12">
-      <TableContainer
+      <Table
         data={tableExampleData.data}
         headers={tableExampleData.headers}
+        config={tableExampleData.config}
         loading={loading}
       />
-      <TableExample />
     </div>
   );
 }

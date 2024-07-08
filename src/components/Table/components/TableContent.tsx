@@ -1,6 +1,10 @@
 import { Table } from "@tanstack/react-table";
 import TableLoading from "./TableLoading";
 import { getCellContent } from "../utils/table";
+import TableBody from "@mui/material/TableBody";
+
+import TableRow from "@mui/material/TableRow";
+import TableCell from "@mui/material/TableCell";
 interface TableContentProps {
   loading: boolean;
   table: Table<unknown>;
@@ -14,7 +18,7 @@ export default function TableContent({
   className = "p-2 text-center border border-slate-300",
 }: Readonly<TableContentProps>) {
   return (
-    <tbody>
+    <TableBody>
       {loading ? (
         <TableLoading
           colspan={headersLength}
@@ -22,13 +26,13 @@ export default function TableContent({
         />
       ) : (
         table.getRowModel().rows.map((row) => (
-          <tr
+          <TableRow
             key={`table_body_tr_${row.id}`}
             className={className}
           >
             {row.getVisibleCells().map((cell) => {
               return (
-                <td
+                <TableCell
                   key={`table_body_td_${cell.id}`}
                   className="py-4 border"
                   style={{
@@ -36,12 +40,12 @@ export default function TableContent({
                   }}
                 >
                   {getCellContent(cell)}
-                </td>
+                </TableCell>
               );
             })}
-          </tr>
+          </TableRow>
         ))
       )}
-    </tbody>
+    </TableBody>
   );
 }
